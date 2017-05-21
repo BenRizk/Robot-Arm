@@ -42,7 +42,7 @@ sweep(pos, trigPin, echoPin);
 void sweep(int pos,int trigPin, int echoPin)
 {
    int distance;
-   for (pos = 0; pos <= 180; pos++) { // goes from 0 degrees to 180 degrees
+   for (pos = 0; pos <= 80; pos++) { // goes from 0 degrees to 180 degrees
     // in steps of 1 degree
     baseservo.write(pos);              // tell servo to go to position in variable 'pos'
     delay(15);                       // waits 15ms for the servo to reach the position
@@ -56,7 +56,7 @@ void sweep(int pos,int trigPin, int echoPin)
       liftservo.write(80);
     }
   }
-  for (pos = 180; pos >= 0; pos--) { // goes from 180 degrees to 0 degrees
+  for (pos = 79; pos >= 0; pos--) { // goes from 180 degrees to 0 degrees
     baseservo.write(pos);              // tell servo to go to position in variable 'pos'
     delay(15);                       // waits 15ms for the servo to reach the position
    distance = distanceSensor(trigPin, echoPin);
@@ -94,12 +94,12 @@ int distanceSensor(int trigPin, int echoPin)
 
 void reachOut()
   {
-int a = 0;
+
   clawservo.write(35); //open claw
   delay(300);
 
    //extend the arm
-  /*
+  
     for(int i = 0; i < 90; i++)
   {
     reachservo.write(i);
@@ -115,11 +115,16 @@ int a = 0;
     reachservo.write(i);
     delay(30);
   }
-   */
+   
+//trying to make the arm stop before it reaches its object
+/*
+int a = 0;
 int distance; 
    
   do{
-     distance = distanceSensor(trigPin, echoPin);
+    distance = distanceSensor(trigPin, echoPin);
+    Serial.print("a:");
+    Serial.print(a);
     a++;
     reachservo.write(a);
     delay(300);
@@ -131,10 +136,30 @@ int distance;
      for(int i = a; i > 35; i--)
    {
     reachservo.write(i);
-    delay(300);
+    delay(30);
   }
-
+*/
 
 }
-
+void moveBlue()
+{
+  liftservo.write(30);
+  delay(30);
+  baseservo.write(130);
+  delay(30);
+}
+void moveRed()
+{
+  liftservo.write(30);
+  delay(30);
+  baseservo.write(175);
+  delay(30);
+}
+void moveGreen()
+{
+  liftservo.write(30);
+  delay(30);
+  baseservo.write(115);
+  delay(30);
+}
 
