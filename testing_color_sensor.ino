@@ -190,7 +190,7 @@ void moveBlue(int basePos)
   delay(100);
   liftservo.write(60); // raise the lift servo
   delay(100);
-  for(int i = basePos; i < 70; i--) // make the base servo move slower
+  for(int i = basePos; i > 70; i--) // make the base servo move slower
   { 
   baseservo.write(i); // move to blue zone
   delay(40);
@@ -199,7 +199,7 @@ void moveBlue(int basePos)
   delay(100);
   liftservo.write(100); //lower the lift servo
   delay(100);
-  clawservo.write(0); //open claw
+  clawservo.write(35); //open claw
   delay(100);
   reachservo.write(130); //raise the arm high to avoid hitting objects
   delay(100);
@@ -212,7 +212,7 @@ void moveRed(int basePos)
   delay(100);
   liftservo.write(60); // raise lift servo
   delay(100);
- for(int i = basePos; i < 40; i--) // make the base servo move slower
+ for(int i = basePos; i > 40; i--) // make the base servo move slower
   { 
   baseservo.write(i); // move to red zone
   delay(40);
@@ -221,7 +221,7 @@ void moveRed(int basePos)
   delay(100);
   liftservo.write(100); //lower the lift servo
   delay(100);
-  clawservo.write(0); //open claw
+  clawservo.write(35); //open claw
   delay(100);
   reachservo.write(130); //raise the arm high to avoid hitting objects
   delay(100);
@@ -234,7 +234,7 @@ void moveGreen(int basePos)
   delay(100);
   liftservo.write(60); // raise lift servo
   delay(100);
-  for(int i = basePos; i < 115; i--) // make the base servo move slow 
+  for(int i = basePos; i > 115; i--) // make the base servo move slow 
   { 
   baseservo.write(i); // move to green zone
   delay(40);
@@ -243,7 +243,7 @@ void moveGreen(int basePos)
   delay(100);
   liftservo.write(100); //lower the lift servo
   delay(100);
-  clawservo.write(0); //open claw
+  clawservo.write(35); //open claw
   delay(100);
   reachservo.write(130); //raise the arm high to avoid hitting objects
   delay(100);
@@ -274,7 +274,7 @@ int findBlue()
   int frequency = pulseIn(sensorOut, LOW);
   // Printing the value on the serial monitor
   Serial.print("B= ");//printing name
-  Serial.print(frequency);//printing RED color frequency
+  Serial.print(frequency);//printing BLUE color frequency
   Serial.println("  ");
   delay(100);
   return frequency;
@@ -289,13 +289,13 @@ int findGreen()
   int frequency = pulseIn(sensorOut, LOW);
   // Printing the value on the serial monitor
   Serial.print("G= ");//printing name
-  Serial.print(frequency);//printing RED color frequency
+  Serial.print(frequency);//printing GREEN color frequency
   Serial.print("  ");
   delay(100);
   return frequency;
 }
 
-void moveBlock(int redValue, int blueValue, int greenValue, int basePos)
+void moveBlock(int redValue,int blueValue,int greenValue,int basePos)
 {
   //object is red when red value is least
       if(redValue < blueValue && redValue < greenValue)
