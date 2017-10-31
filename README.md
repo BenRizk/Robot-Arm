@@ -1,2 +1,2 @@
 # Robot-Arm
-This is code for arduino arm
+Code for the arduino arm.
